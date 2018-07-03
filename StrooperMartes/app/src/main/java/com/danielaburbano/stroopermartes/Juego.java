@@ -28,7 +28,7 @@ public class Juego extends AppCompatActivity  implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
         segundos = new int[]{0, 30};
-        insertarValores();
+
         pCorrectas=0;
         pIncorrectas=0;
         pAcierto=0;
@@ -37,6 +37,7 @@ public class Juego extends AppCompatActivity  implements View.OnClickListener{
         inizialite();
         listar();
         randomizar();
+        insertarValores();
         txtTiempo.setText("Seg: 00:"+segundos[1]);
         runGame();
 
@@ -101,7 +102,7 @@ public class Juego extends AppCompatActivity  implements View.OnClickListener{
 
     public void salir(){
         if (pIncorrectas==3 || segundos[1]==1){
-            Intent intent = new Intent(Juego.this,Menu.class);
+            Intent intent = new Intent(Juego.this,Resumen.class);
             bandera= false;
             startActivity(intent);
             finish();
@@ -201,7 +202,7 @@ public class Juego extends AppCompatActivity  implements View.OnClickListener{
            float tmpP = (float)  (tmp1/ tmp2)*100;
            pAcierto= (int)tmpP;
         }else{
-            pAcierto=100;
+            pAcierto=0;
         }
 
         txtCorrectas.setText("Correctas: "+pCorrectas);
