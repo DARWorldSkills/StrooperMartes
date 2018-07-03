@@ -42,6 +42,8 @@ public class Menu extends AppCompatActivity implements View.OnClickListener{
                 break;
 
             case R.id.btnConfiguracion:
+                intent = new Intent(Menu.this, Configuracion.class);
+                startActivity(intent);
                 break;
 
 

@@ -19,7 +19,8 @@
         <activity android:name=".Menu" />
         <activity android:name=".Juego" />
         <activity android:name=".Resumen" />
-        <activity android:name=".Puntaje"></activity>
+        <activity android:name=".Puntaje" />
+        <activity android:name=".Configuracion"></activity>
     </application>
 
 </manifest>
