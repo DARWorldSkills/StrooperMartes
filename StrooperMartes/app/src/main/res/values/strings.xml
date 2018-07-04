@@ -8,4 +8,5 @@
     <string name="incorrectas">Incorrectas</string>
     <string name="intentos">Intetos</string>
     <string name="tiempo">Tiempo</string>
+    <string name="tiempolimite">Tiempo (que sea mayor o igual a uno y menor  igual a 10)</string>
 </resources>

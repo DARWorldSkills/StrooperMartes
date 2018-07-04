@@ -6,13 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Juego extends AppCompatActivity  implements View.OnClickListener{
+public class JuegoC extends AppCompatActivity implements View.OnClickListener{
     List<String> listaPalabra = new ArrayList<>();
     List<Integer> listaColores = new ArrayList<>();
     TextView txtCorrectas, txtIncorrectas, txtPalabra, txtAcierto, txtTiempo, txtIntentos;
@@ -23,11 +22,11 @@ public class Juego extends AppCompatActivity  implements View.OnClickListener{
     int valorcito;
     int ipR, icR;
     boolean bandera= true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_juego);
-        segundos = new int[]{0, 30};
+        setContentView(R.layout.activity_juego_c);
 
         pCorrectas=0;
         pIncorrectas=0;
@@ -37,6 +36,9 @@ public class Juego extends AppCompatActivity  implements View.OnClickListener{
         inizialite();
         listar();
         randomizar();
+        if (Configuracion.modoGame==2){
+            segundos[0]=0;
+        }
         insertarValores();
         txtTiempo.setText("Seg: 00:"+segundos[1]);
         runGame();
@@ -58,9 +60,14 @@ public class Juego extends AppCompatActivity  implements View.OnClickListener{
                         @Override
                         public void run() {
                             segundos[0] += 1;
-                            segundos[1] = segundos[1] - 1;
+                            if (Configuracion.modoGame==2){
+                                segundos[0] = segundos[0]+1;
+                            }
+                            if (Configuracion.modoGame==1){
+                                segundos[0] = segundos[0]-1;
+                            }
                             salir();
-                            if (segundos[0] >= Configuracion.tiempo) {
+                            if (segundos[0] >= 3) {
                                 pIncorrectas += 1;
                                 pIntentos += 1;
                                 randomizar();
@@ -101,15 +108,8 @@ public class Juego extends AppCompatActivity  implements View.OnClickListener{
     }
 
     public void salir(){
-        if ((pIncorrectas==3 || segundos[1]==0)&& Configuracion.modoGame==1){
-            Intent intent = new Intent(Juego.this,Resumen.class);
-            startActivity(intent);
-            finish();
-            bandera= false;
-        }
-
-        if ((pIncorrectas==3)&& Configuracion.modoGame==1){
-            Intent intent = new Intent(Juego.this,Resumen.class);
+        if (pIncorrectas==3 || segundos[1]==1){
+            Intent intent = new Intent(JuegoC.this,Resumen.class);
             startActivity(intent);
             finish();
             bandera= false;
@@ -205,9 +205,9 @@ public class Juego extends AppCompatActivity  implements View.OnClickListener{
 
     public void insertarValores(){
         if (pCorrectas>0){
-           double tmp1 = pCorrectas, tmp2= pIntentos;
-           float tmpP = (float)  (tmp1/ tmp2)*100;
-           pAcierto= (int)tmpP;
+            double tmp1 = pCorrectas, tmp2= pIntentos;
+            float tmpP = (float)  (tmp1/ tmp2)*100;
+            pAcierto= (int)tmpP;
         }else{
             pAcierto=0;
         }
@@ -256,3 +256,4 @@ public class Juego extends AppCompatActivity  implements View.OnClickListener{
 
     }
 }
+

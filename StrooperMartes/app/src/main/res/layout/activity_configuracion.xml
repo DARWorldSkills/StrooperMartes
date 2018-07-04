@@ -70,27 +70,31 @@
             android:layout_weight="1"
             android:text="Tiempo de palabra" />
 
-        <RadioGroup
+        <EditText
+            android:id="@+id/txtTiempoPalabra"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:hint="Tiempo (1>=x y 10<=x)"
+            android:inputType="number" />
 
-            <RadioButton
-                android:id="@+id/rbtn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/tiempo"
-                android:layout_weight="1" />
+    </LinearLayout>
 
-            <RadioButton
-                android:id="@+id/rbtnIntentos"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/Aciertos"
-                android:layout_weight="1" />
-
-        </RadioGroup>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="salir"
+            android:layout_weight="2"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:onClick="salir"/>
     </LinearLayout>
 
 
